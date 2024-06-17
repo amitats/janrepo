@@ -1,40 +1,36 @@
-name: CI Pipeline3
+name: Hello World Python CI
 
-on:
-  push:
-    branches:
-      - main
+on: 
+  push: 
+    branches: 
+      - main 
+  pull_request: 
+    branches: 
+      - main 
 
-jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
+jobs: 
+  build: 
+    runs-on: ubuntu-latest 
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    steps: 
+    - name: Task 1 
+      uses: actions/checkout@v2 
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14
+    - name: Task 2 
+      uses: actions/setup-python@v2 
+      with: 
+        python-version: '3.8' 
 
-      - name: Install Dependencies
-        run: |
-          npm install
-      
-      - name: Run Frontend Tests
-        run: |
-          npm test
-      
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
-      
-      - name: Install Python Dependencies
-        run: |
-          pip install -r requirements.txt
-      
-      - name: Run Backend Tests
-        run: |
-          python -m unittest discover
+    - name: Install Task 
+      run: | 
+        python -m pip install --upgrade pip 
+
+    - name: Task Flake8 
+      run: | 
+        pip install flake8 
+        flake8 . 
+
+    - name: Run 
+      run: | 
+        pip install pytest 
+        pytest
